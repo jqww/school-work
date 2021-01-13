@@ -3,7 +3,46 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <algorithm>
 using namespace std;
+
+
+int main()
+{
+
+}
+/*
+
+int main()
+{
+	unsigned int n;
+	unsigned long long fac = 1;
+	cout << "Insert a positive integer: ";
+	cin >> n;
+	for (int i = 1; i <= n; ++i)
+	{
+		fac *= i;
+	}
+	cout << "Factorial of " << n << " = " << fac;
+	return 0;
+}
+/*
+
+int main()
+{
+	long n, n1 = 1, n2 = 1, n3;
+	cout << "Enter how many times you would like the fibinaci sequence to go to: ";
+	cin >> n;
+	n3 = n1 + n2;
+	for (int i = 4; i <= n; i++)
+	{
+		n3 = n2 + n3;
+		n2 = n3 - n2;
+	}
+	cout << n3;
+}
+
+
 int main()
 {
 	long n = 0;
@@ -18,7 +57,7 @@ int main()
 	}
 	cout << total;
 }
-/*
+
 
 int main()
 {
