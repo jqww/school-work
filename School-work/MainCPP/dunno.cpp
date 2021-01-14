@@ -4,6 +4,8 @@
 #include <string>
 #include <cmath>
 #include <algorithm>
+#include <cstdlib>
+#include <time.h>
 /*
 class Global
 {
@@ -19,7 +21,110 @@ using namespace std;
 
 int main()
 {
+	double balance = 50.0;
+	double betAmount;
+	srand(time(NULL));
+	string retry;
+	cout << "Welcome to blackjack, by Moontiz (william fox)" << endl;
+	do
+	{
+		string choice;
+		int yourFirstCard = rand() % 11 + 2;
+		int yourSecondCard = rand() % 11 + 2;
+		int yourFirstHitCard = rand() % 11 + 2;
+		int yourSecondHitCard = rand() % 11 + 2;
+		int yourFirstDoubleCard = rand() % 11 + 2;
+		int dealersFirstCard = rand() % 11 + 2;
+		int dealersSecondCard = rand() % 11 + 2;
+		int dealersFirstHitCard = rand() % 11 + 2;
+		int yT = yourFirstCard + yourSecondCard;
+		cout << "How much would you like to bet?";
+		cin >> betAmount;
+		balance -= betAmount;
+		cout << "You currently have a " << yourFirstCard << " and " << yourSecondCard << endl;
+		cout << "Your total is: " << yT << endl << "\n\n";
+		cout << "The dealer has a " << dealersFirstCard << " showing, and a face down card." << endl;
+		cout << "It is best to assume that the card he has is always a 10, so by that logic his theoretical total would be " << dealersFirstCard + 10 << endl << "\n\n";
+		cout << "Would you like to ""hit"", ""stand"", or ""double""? ";
+		cin >> choice;
 
+		//Start of Hit statement
+
+		if (choice == "hit" || choice == "Hit")
+		{
+			cout << "You drew an " << yourFirstHitCard << endl;
+			yT = yourFirstHitCard + yT;
+			cout << "Your total is now: " << yT << endl;
+			if (yT > 21)
+			{
+				cout << "You busted.";
+			}
+			else
+			{
+				cout << "Would you like to ""hit"", ""stand"", or ""double""? ";
+				cin >> choice;
+
+			}
+		}
+
+		//Start of Stand statement
+
+		else if (choice == "stand" || choice == "Stand")
+		{
+			cout << "Alright, It's the dealers turn." << endl;
+			int dT = dealersFirstCard + dealersSecondCard;
+			if (dT < 13)
+			{
+				cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
+				dT = dT + dealersFirstHitCard;
+				if (dT > 21)
+				{
+					cout << "The dealer busted.";
+				}
+			}
+			cout << "The dealer stood." << endl;
+			cout << "He shows his face down card, it's a " << dealersSecondCard << ". His total is " << dT << " \nYour total is " << yourFirstCard + yourSecondCard << endl;
+			if (dT < yourFirstCard + yourSecondCard)
+				cout << "You win!\n";
+			else
+				cout << "You lost.\n";
+		}
+
+		//Start of Double statement
+
+		else if (choice == "double" || choice == "Double")
+		{
+			yT = yT + yourFirstDoubleCard;
+			cout << "The card you draw is " << yourFirstDoubleCard;
+			if (yT > 21)
+				cout << "You lost." << endl;
+			else
+			{
+				cout << "Alright, It's the dealers turn." << endl;
+				int dT = dealersFirstCard + dealersSecondCard;
+				if (dT < 13)
+				{
+					cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
+					dT = dT + dealersFirstHitCard;
+					if (dT > 21)
+					{
+						cout << "The dealer busted.";
+					}
+				}
+				cout << "The dealer stood." << endl;
+				cout << "He shows his face down card, it's a " << dealersSecondCard << ". His total is " << dT << " \nYour total is " << yT << endl;
+				if (dT < yourFirstCard + yourSecondCard)
+				{
+					balance = betAmount + (betAmount / 2);
+					cout << "You win! Your total balance has increased to: " << balance << "\n";
+				}
+				else
+					cout << "You lost.\n";
+			}
+		}
+		cout << "Would you like to do this again? [Y/N]: ";
+		cin >> retry;
+	} while (retry == "Y" || retry == "Yes" || retry == "yes" || retry == "y");
 }
 /*
 
