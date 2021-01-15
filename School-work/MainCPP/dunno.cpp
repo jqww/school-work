@@ -21,13 +21,14 @@ VARIABLE year WILL REQUIRE obj. AT THE FRONT.
 using namespace std;
 
 //Made by moontiz (william fox) at 1.14.2021 at 7:30 PM
+
 int main()
 {
 	//initial balance you will start with
 	double balance = 50.0;
 	double betAmount;
 	string retry;
-	cout << "Welcome to blackjack, by Moontiz (william fox)" << endl;
+	cout << "\033[036mWelcome to blackjack, by \033[35mMoontiz (william fox)\033[0m" << endl;
 	do
 	{
 		//sets the timer for the random generator timings to 0 milliseconds.
@@ -46,30 +47,43 @@ int main()
 		int dealersFirstHitCard = rand() % 10 + 2;
 		//total value from the first 2 cards you pick up
 		int yT = yourFirstCard + yourSecondCard;
-		cout << "Your current balance is: " << balance << endl;
-		cout << "How much would you like to bet? ";
+		cout << "Your current balance is: $\033[32m" << balance << endl;
+		cout << "\033[0mHow much would you like to bet? $\033[32m";
 		cin >> betAmount;
 		//checks the balance and if it is less than 0 it exits the exe
 		if (balance == 0)
 		{
-			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSorry but you have no more money, try again when you have more!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+			cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\033[31mSorry but you have no more money, \033[32mtry again when you have more!\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 			Sleep(2000);
 			return 0;
 		}
 		//checks the balance and if it is less than your balance it repeats you don't have enough until you choose an amount that you do have.
 		while (betAmount > balance)
 		{
-			cout << "you do not have enough money to bet." << endl;
-			cout << "Your current balance is: " << balance << endl;
-			cout << "How much would you like to bet? ";
+			cout << "\033[31mERROR 1: you do not have enough money to bet $" << betAmount << "\033[0m" << endl;
+			cout << "Your current balance is: \033[32m" << balance << endl;
+			cout << "\033[0mHow much would you like to bet? $\033[32m";
+			cin >> betAmount;
+		}
+		//check if the input was valid (within a double/int) and not in a string.
+		while (!cin)
+		{
+			cout << "\033[31mERROR 2: Input was invalid, please try again.\033[0m" << endl;
+			cout << "Your current balance is: \033[32m" << balance << endl;
+			cout << "\033[0mHow much would you like to bet? $\033[32m";
+			cin.clear();
+			cin.ignore(256, '\n');
 			cin >> betAmount;
 		}
 		//subtracting the betAmount from the balance as to "replicate" them taking the coins
 		balance -= betAmount;
-		cout << "You draw a " << yourFirstCard << " and " << yourSecondCard << endl;
+		cout << "\n\n\033[0mYou draw a " << yourFirstCard << " and " << yourSecondCard << endl;
+		Sleep(1000);
 		cout << "Your total is: " << yT << endl << "\n\n";
+		Sleep(1000);
 		cout << "The dealer has a " << dealersFirstCard << " showing, and a face down card." << endl;
 		cout << "It is best to assume that the card he has is always a 10, so by that logic his theoretical total would be " << dealersFirstCard + 10 << endl << "\n\n";
+		Sleep(1000);
 		cout << "Would you like to ""hit"", ""stand"", or ""double""? ";
 		cin >> choice;
 		do
@@ -78,11 +92,14 @@ int main()
 
 			if (choice == "hit" || choice == "Hit")
 			{
+				Sleep(1000);
 				cout << "You drew an " << yourFirstHitCard << endl;
 				yT = yourFirstHitCard + yT;
+				Sleep(1000);
 				cout << "Your total is now: " << yT << endl;
 				if (yT > 21)
 				{
+					Sleep(1000);
 					cout << "You busted." << endl;
 					EndOfGame = "True";
 					break;
@@ -206,14 +223,17 @@ int main()
 				}
 			}
 //END OF SECOND ITERATION
+
 			//Start of Stand statement
 
 			else if (choice == "stand" || choice == "Stand")
 			{
+				Sleep(1000);
 				cout << "Alright, It's the dealers turn." << endl;
 				int dT = dealersFirstCard + dealersSecondCard;
 				if (dT < 13)
 				{
+					Sleep(1000);
 					cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
 					dT = dT + dealersFirstHitCard;
 					if (dT > 21)
@@ -225,6 +245,7 @@ int main()
 						break;
 					}
 				}
+				Sleep(1000);
 				cout << "The dealer stood." << endl;
 				cout << "He shows his face down card, it's a " << dealersSecondCard << ". His total is " << dT << " \nYour total is " << yT << endl;
 				if (dT == yT)
