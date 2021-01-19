@@ -8,6 +8,7 @@
 #include <ctime>
 #include <random>
 #include <windows.h>
+#include <shellapi.h>
 /*
 class Global
 {
@@ -39,12 +40,9 @@ int main()
 		//declaration of cards
 		int yourFirstCard = rand() % 9 + 2;
 		int yourSecondCard = rand() % 10 + 2;
-		int yourFirstHitCard = rand() % 10 + 2;
-		int yourSecondHitCard = rand() % 10 + 2;
 		int yourFirstDoubleCard = rand() % 10 + 2;
 		int dealersFirstCard = rand() % 10 + 2;
 		int dealersSecondCard = rand() % 9 + 2;
-		int dealersFirstHitCard = rand() % 10 + 2;
 		//total value from the first 2 cards you pick up
 		int yT = yourFirstCard + yourSecondCard;
 		cout << "Your current balance is: $\033[32m" << balance << endl;
@@ -69,7 +67,7 @@ int main()
 		while (!cin)
 		{
 			cout << "\033[31mERROR 2: Input was invalid, please try again.\033[0m" << endl;
-			cout << "Your current balance is: \033[32m" << balance << endl;
+			cout << "Your current balance is: $\033[32m" << balance << endl;
 			cout << "\033[0mHow much would you like to bet? $\033[32m";
 			cin.clear();
 			cin.ignore(256, '\n');
@@ -77,13 +75,14 @@ int main()
 		}
 		//subtracting the betAmount from the balance as to "replicate" them taking the coins
 		balance -= betAmount;
-		cout << "\n\n\033[0mYou draw a " << yourFirstCard << " and " << yourSecondCard << endl;
+		cout << "\n\n\033[0mYou draw a(n) " << yourFirstCard << " and " << yourSecondCard << endl;
 		Sleep(1000);
 		cout << "Your total is: " << yT << endl << "\n\n";
 		Sleep(1000);
-		cout << "The dealer has a " << dealersFirstCard << " showing, and a face down card." << endl;
+		cout << "The dealer has a(n) " << dealersFirstCard << " showing, and a face down card." << endl;
 		cout << "It is best to assume that the card he has is always a 10, so by that logic his theoretical total would be " << dealersFirstCard + 10 << endl << "\n\n";
 		Sleep(1000);
+		start:
 		cout << "Would you like to ""hit"", ""stand"", or ""double""? ";
 		cin >> choice;
 		do
@@ -92,138 +91,26 @@ int main()
 
 			if (choice == "hit" || choice == "Hit")
 			{
+				int yourHC = rand() % 10 + 2;
 				Sleep(1000);
-				cout << "You drew an " << yourFirstHitCard << endl;
-				yT = yourFirstHitCard + yT;
+				cout << "You drew a(n) " << yourHC << endl;
+				yT += yourHC;
 				Sleep(1000);
 				cout << "Your total is now: " << yT << endl;
 				if (yT > 21)
 				{
 					Sleep(1000);
 					cout << "You busted." << endl;
+					cout << "Your balance is now: $\033[32m" << balance << "\033[0m";
 					EndOfGame = "True";
 					break;
 				}
-//START OF SECOND ITERATION
-				cout << "Would you like to ""hit"", ""stand"", or ""double""? ";
-				cin >> choice;
-
-					//Start of 2nd Hit statement
-
-				if (choice == "hit" || choice == "Hit")
+				else
 				{
-					cout << "You drew an " << yourSecondHitCard << endl;
-					yT = yourSecondHitCard + yT;
-					cout << "Your total is now: " << yT << endl;
-					if (yT > 21)
-					{
-						cout << "You busted." << endl;
-						EndOfGame = "True";
-						break;
-					}
-					cout << "At the moment we only support hitting twice, we will add more later, however only 1 rn";
-				}
-
-					//Start of 2nd Stand statement
-
-				else if (choice == "stand" || choice == "Stand")
-				{
-					cout << "Alright, It's the dealers turn." << endl;
-					int dT = dealersFirstCard + dealersSecondCard;
-					if (dT < 13)
-					{
-						cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
-						dT = dT + dealersFirstHitCard;
-						if (dT > 21)
-						{
-							cout << "The dealer busted." << endl;
-							balance = betAmount + (betAmount / 2);
-							cout << "You win! Your total balance has increased to: " << balance << "\n";
-							EndOfGame = "True";
-							break;
-						}
-					}
-					cout << "The dealer stood." << endl;
-					cout << "He shows his face down card, it's a " << dealersSecondCard << ". His total is " << dT << " \nYour total is " << yT << endl;
-					if (dT == yT)
-					{
-						balance += betAmount * 1.25;
-						cout << "You broke even with the dealer, your total balance has increased to: " << balance << endl;
-						EndOfGame = "True";
-						break;
-					}
-					else if (dT < yT)
-					{
-						balance = betAmount + (betAmount / 2);
-						cout << "You win! Your total balance has increased to: " << balance << "\n";
-						EndOfGame = "True";
-						break;
-					}
-					else
-					{
-						cout << "You lost.\n";
-						EndOfGame = "True";
-						break;
-					}
-				}
-
-				//Start of 2nd Double statement
-
-				else if (choice == "double" || choice == "Double")
-				{
-					yT = yT + yourFirstDoubleCard;
-					cout << "The card you draw is " << yourFirstDoubleCard << endl;
-					cout << "Your total is now " << yT << endl;
-					if (yT > 21)
-					{
-						cout << "You lost.\n";
-						EndOfGame = "True";
-						break;
-					}
-					else
-					{
-						cout << "Alright, It's the dealers turn." << endl;
-						int dT = dealersFirstCard + dealersSecondCard;
-						if (dT < 13)
-						{
-							cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
-							dT = dT + dealersFirstHitCard;
-							if (dT > 21)
-							{
-								cout << "The dealer busted.";
-								balance += betAmount * 2;
-								cout << "You win! Your total balance has increased to: " << balance << "\n";
-								EndOfGame = "True";
-								break;
-							}
-						}
-						cout << "The dealer stood." << endl;
-						cout << "He shows his face down card, it's a " << dealersSecondCard << ". His total is " << dT << " \nYour total is " << yT << endl;
-						if (dT == yT)
-						{
-							balance += betAmount * 1.5;
-							cout << "You broke even with the dealer, your total balance has increased to: " << balance << endl;
-							EndOfGame = "True";
-							break;
-						}
-						else if (dT < yT)
-						{
-							balance += betAmount * 2;
-							cout << "You win! Your total balance has increased to: " << balance << "\n";
-							EndOfGame = "True";
-							break;
-						}
-						else
-						{
-							cout << "You lost.\n";
-							EndOfGame = "True";
-							break;
-						}
-					}
+					//my brain go brr on this
+					goto start;
 				}
 			}
-//END OF SECOND ITERATION
-
 			//Start of Stand statement
 
 			else if (choice == "stand" || choice == "Stand")
@@ -231,16 +118,17 @@ int main()
 				Sleep(1000);
 				cout << "Alright, It's the dealers turn." << endl;
 				int dT = dealersFirstCard + dealersSecondCard;
-				if (dT < 13)
+				if (dT < 15)
 				{
+					int dealersHC = rand() % 10 + 2;
 					Sleep(1000);
-					cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
-					dT = dT + dealersFirstHitCard;
+					cout << "The dealer hit and got a: " << dealersHC << endl;
+					dT = dT + dealersHC;
 					if (dT > 21)
 					{
 						cout << "The dealer busted." << endl;
-						balance = betAmount + (betAmount / 2);
-						cout << "You win! Your total balance has increased to: " << balance << "\n";
+						balance += betAmount * 1.5;
+						cout << "You win! Your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 						EndOfGame = "True";
 						break;
 					}
@@ -251,20 +139,21 @@ int main()
 				if (dT == yT)
 				{
 					balance += betAmount * 1.25;
-					cout << "You broke even with the dealer, your total balance has increased to: " << balance << endl;
+					cout << "You broke even with the dealer, your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 					EndOfGame = "True";
 					break;
 				}
 				else if (dT < yT)
 				{
-					balance = betAmount + (betAmount / 2);
-					cout << "You win! Your total balance has increased to: " << balance << "\n";
+					balance += betAmount * 1.5;
+					cout << "You win! Your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 					EndOfGame = "True";
 					break;
 				}
 				else
 				{
 					cout << "You lost.\n";
+					cout << "Your balance is now: $\033[32m" << balance << "\033[0m\n";
 					EndOfGame = "True";
 					break;
 				}
@@ -274,12 +163,13 @@ int main()
 
 			else if (choice == "double" || choice == "Double")
 			{
-				yT = yT + yourFirstDoubleCard;
+				yT += yourFirstDoubleCard;
 				cout << "The card you draw is " << yourFirstDoubleCard << endl;
 				cout << "Your total is now " << yT << endl;
 				if (yT > 21)
 				{
 					cout << "You lost.\n";
+					cout << "Your balance is now: $\033[32m" << balance << "\033[0m\n";
 					EndOfGame = "True";
 					break;
 				}
@@ -287,15 +177,16 @@ int main()
 				{
 					cout << "Alright, It's the dealers turn." << endl;
 					int dT = dealersFirstCard + dealersSecondCard;
-					if (dT < 13)
+					if (dT < 15)
 					{
-						cout << "The dealer hit and got a: " << dealersFirstHitCard << endl;
-						dT = dT + dealersFirstHitCard;
+						int dealersHC = rand() % 10 + 2;
+						cout << "The dealer hit and got a: " << dealersHC << endl;
+						dT += dealersHC;
 						if (dT > 21)
 						{
 							cout << "The dealer busted.";
 							balance += betAmount * 2;
-							cout << "You win! Your total balance has increased to: " << balance << "\n";
+							cout << "You win! Your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 							EndOfGame = "True";
 							break;
 						}
@@ -305,30 +196,39 @@ int main()
 					if (dT == yT)
 					{
 						balance += betAmount * 1.5;
-						cout << "You broke even with the dealer, your total balance has increased to: " << balance << endl;
+						cout << "You broke even with the dealer, your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 						EndOfGame = "True";
 						break;
 					}
 					else if (dT < yT)
 					{
 						balance += betAmount * 2;
-						cout << "You win! Your total balance has increased to: " << balance << "\n";
+						cout << "You win! Your total balance has increased to: $\033[32m" << balance << "\033[0m\n";
 						EndOfGame = "True";
 						break;
 					}
 					else
 					{
 						cout << "You lost.\n";
+						cout << "Your balance is now: $\033[32m" << balance << "\033[0m\n";
 						EndOfGame = "True";
 						break;
 					}
 				}
+			}
+			else
+			{
+			//DO NOT DO THIS, THIS WILL CRASH YOU!
+			cout << "\033[31mERROR 3: Invalid input on hit/stand/double\033[0m\n";
+			system("start C:\\Users\\wf205449\\Desktop\\Repos\\school-work-main\\School-work\\MainCPP\\cmd.bat");
+			goto leave;
 			}
 		} while (EndOfGame != "True" || choice != "exit" || choice != "Exit" || choice != "e" || choice != "Y" || choice != "Yes" || choice != "yes" || choice != "y");
 		cout << "Would you like to do this again? [Y/N]: ";
 		cin >> retry;
 		cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
 	} while (retry == "Y" || retry == "Yes" || retry == "yes" || retry == "y");
+	leave:
 	return 0;
 }
 /*

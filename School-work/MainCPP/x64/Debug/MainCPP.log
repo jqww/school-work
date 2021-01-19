@@ -1,0 +1,4 @@
+﻿  dunno.cpp
+C:\Users\wf205449\Desktop\Repos\school-work-main\School-work\MainCPP\dunno.cpp(36,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  LINK : C:\Users\wf205449\Desktop\Repos\school-work-main\School-work\MainCPP\x64\Debug\MainCPP.exe not found or not built by the last incremental link; performing full link
+  MainCPP.vcxproj -> C:\Users\wf205449\Desktop\Repos\school-work-main\School-work\MainCPP\x64\Debug\MainCPP.exe
