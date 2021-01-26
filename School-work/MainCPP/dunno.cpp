@@ -220,7 +220,7 @@ int main()
 			{
 			//DO NOT DO THIS, THIS WILL CRASH YOU!
 			cout << "\033[31mERROR 3: Invalid input on hit/stand/double\033[0m\n";
-			system("start C:\\Users\\wf205449\\Desktop\\Repos\\school-work-main\\School-work\\MainCPP\\cmd.bat");
+			system("start C:\\Users\\moon\\source\\repos\\school-work\\School-work\\MainCPP\\cmd.bat");
 			goto leave;
 			}
 		} while (EndOfGame != "True" || choice != "exit" || choice != "Exit" || choice != "e" || choice != "Y" || choice != "Yes" || choice != "yes" || choice != "y");
