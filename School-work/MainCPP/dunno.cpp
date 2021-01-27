@@ -9,17 +9,89 @@
 #include <random>
 #include <windows.h>
 #include <shellapi.h>
-/*
-class Global
-{
-	public:
-	int year;
-};
-void commonYear();
-void leapYear();
-VARIABLE year WILL REQUIRE obj. AT THE FRONT.
-*/
 using namespace std;
+
+
+int main(void) {
+	int vector1[7] = { 4, 7, 2, 8, 1, 3, 0 };
+	int vector2[7];
+	// Insert your code here
+	for (int i = 0; i < 7; i++)
+		cout << vector2[i] << ' ';
+	cout << endl;
+	return 0;
+}
+/*
+
+int main()
+{
+	double firstNum, secondNum;
+	int choice;
+	do
+	{
+		cout << "\nMENU:\n[0] Exit\n[1] Add\n[2] Subtract\n[3] Multiply\n[4] Divide\nWhat would you like to do (0-4): ";
+		cin >> choice;
+		while (choice != 1 && choice != 2 && choice != 3 && choice != 4 && choice != 0 || !cin)
+		{
+			cout << "\nInvalid input, try again.\n";
+			cout << "MENU:\n[1] Add\n[2] Subtract\n[3] Multiply\n[4] Divide\nWhat would you like to do (0-4): ";
+			cin.clear();
+			cin.ignore(256, '\n');
+			cin >> choice;
+		}
+		switch (choice)
+		{
+			case 1:
+			{
+				cout << "Enter your first number: ";
+				cin >> firstNum;
+				cout << "Enter your second number: ";
+				cin >> secondNum;
+				double answer = firstNum + secondNum;
+				cout << "The answer is: " << answer;
+				break;
+			}
+			case 2:
+			{
+				cout << "Enter your first number: ";
+				cin >> firstNum;
+				cout << "Enter your second number: ";
+				cin >> secondNum;
+				double answer = firstNum - secondNum;
+				cout << "The answer is: " << answer;
+				break;
+			}
+			case 3:
+			{
+				cout << "Enter your first number: ";
+				cin >> firstNum;
+				cout << "Enter your second number: ";
+				cin >> secondNum;
+				double answer = firstNum * secondNum;
+				cout << "The answer is: " << answer;
+				break;
+			}
+			case 4:
+			{
+				cout << "Enter your first number: ";
+				cin >> firstNum;
+				cout << "Enter your second number: ";
+				cin >> secondNum;
+				if (secondNum == 0)
+				{
+					cout << "Dividing by zero will not equal a real number.";
+				}
+				else
+				{
+					double answer = firstNum / secondNum;
+					cout << "The answer is: " << answer;
+				}
+				break;
+			}
+		}
+	} while (choice != 0);
+	return(0);
+}
 
 //Made by moontiz (william fox) at 1.14.2021 at 7:30 PM
 
@@ -231,7 +303,7 @@ int main()
 	leave:
 	return 0;
 }
-/*
+
 
 int main()
 {

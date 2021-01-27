@@ -1,3 +1,2 @@
 ﻿  dunno.cpp
-C:\Users\moon\source\repos\school-work\School-work\MainCPP\dunno.cpp(36,13): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   MainCPP.vcxproj -> C:\Users\moon\source\repos\school-work\School-work\MainCPP\x64\Debug\MainCPP.exe
