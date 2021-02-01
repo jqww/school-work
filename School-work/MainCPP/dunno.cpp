@@ -9,19 +9,113 @@
 #include <random>
 #include <windows.h>
 #include <shellapi.h>
+#include <gdiplus.h>
 using namespace std;
 
 
-int main(void) {
-	int vector1[7] = { 4, 7, 2, 8, 1, 3, 0 };
-	int vector2[7];
-	// Insert your code here
-	for (int i = 0; i < 7; i++)
-		cout << vector2[i] << ' ';
-	cout << endl;
+
+int main()
+{
+
+	char sName[] = "";
+	cout << "Enter your name: ";
+	cin >> sName;
+	for (char i = 0; i < sizeof(sName); i++)
+		cout << *(sName + i) << " ";
 	return 0;
 }
 /*
+
+struct student
+{
+	char id_num[7];
+	char name[11];
+	char gender;
+	int age;
+};
+int main()
+{
+	struct student student1;
+	cout << "Emter student ID num (6 max): ";
+	cin >> student1.id_num;
+	cout << "Enter student name (10 max): ";
+	cin >> student1.name;
+	cout << "Enter gender: [M/F]: ";
+	cin >> student1.gender;
+	cout << "Enter age: ";
+	cin >> student1.age;
+	cout << "\n------------------------\n";
+	cout << "ID number:	" << student1.id_num << endl;
+	cout << "Name:		" << student1.name << endl;
+	cout << "Gender:		" << student1.gender << endl;
+	cout << "Age:		" << student1.age;
+	cout << "\n------------------------\n";
+	return 0;
+}
+
+
+int main()
+{
+	int year, month, day;
+	struct DATE DoB[100];
+	DoB[0].year = 2012;
+	DoB[0].month = 1;
+}
+struct DATE
+{
+	int year, month, day;
+};
+
+
+int main()
+{
+	struct STUDENT stdnt[100000];
+	stdnt[3].time = 4;
+	stdnt[0].name = "Bond";
+	stdnt[0].time = 3.5;
+	stdnt[0].rtChapter = 2;
+}
+struct STUDENT
+{
+	string name;
+	float time;
+	int rtChapter;
+};
+
+
+int main()
+{
+	int guest[3][15][20];
+	int room;
+	int vacancy = 0;
+	for (room = 0; room < 20; room++)
+	{
+		if (guest[2][14][room] == 0)
+		{
+			vacancy++;
+		}
+	}
+}
+
+
+int main()
+{
+	//ARRAYS WILL ALWAYS START AT 0 NEVER ANYTHING ELSE!!!!
+	float temp[31][24];
+	float max = -100;
+	for (int day = 0; day < 31; day++)
+	{
+		for (int hour = 0; hour < 24; hour++)
+		{
+			if (temp[day][hour] > max)
+			{
+				max = temp[day][hour];
+			}
+		}
+	}
+	cout << "The highest temperature was " << max << endl;
+}
+
 
 int main()
 {
