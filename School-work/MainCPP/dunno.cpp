@@ -16,15 +16,71 @@ using namespace std;
 
 int main()
 {
+	int number;
+	cout << "Number: ";
+	cin >> number;
+	bool isPrime = true;
+	for (int i = 2; i < number; i++)
+	{
 
-	char sName[] = "";
+	}
+	if (isPrime)
+		cout <<number << " is Prime.";
+}
+/*
+
+int main()
+{
+	int length;
+	cout << "Length: ";
+	cin >> length;
+	char symbol;
+	cout << "Symbol: ";
+	cin >> symbol;
+	for (int i = 1; i <= length; i++)
+	{
+		for (int j = 1; j <= i; j++)
+		{
+			cout << setw(3) << symbol;
+		}
+		cout << endl;
+	}
+}
+
+
+int  main()
+{
+	int height, width;
+	cout << "Height: ";
+	cin >> height;
+	cout << "Width: ";
+	cin >> width;
+	char symbol;
+	cout << "Symbol: ";
+	cin >> symbol;
+	for (int h = 0; h < height; h++)
+	{
+		for (int w = 0; w < width; w++)
+		{
+			cout << setw(3) << symbol;
+		}
+		cout << endl;
+	}
+	system("pause>0");
+}
+
+
+int main()
+{
+
+	char sName[999] = "";
 	cout << "Enter your name: ";
 	cin >> sName;
 	for (char i = 0; i < sizeof(sName); i++)
 		cout << *(sName + i) << " ";
-	return 0;
+	system("pause>0");
 }
-/*
+
 
 struct student
 {
