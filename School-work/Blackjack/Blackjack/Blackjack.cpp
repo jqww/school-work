@@ -43,14 +43,6 @@ int main()
 			Sleep(2000);
 			return 0;
 		}
-		//checks the balance and if it is less than your balance it repeats you don't have enough until you choose an amount that you do have.
-		while (betAmount > balance)
-		{
-			cout << "\033[31mERROR 1: you do not have enough money to bet $" << betAmount << "\033[0m" << endl;
-			cout << "Your current balance is: \033[32m" << balance << endl;
-			cout << "\033[0mHow much would you like to bet? $\033[32m";
-			cin >> betAmount;
-		}
 		//check if the input was valid (within a double/int) and not in a string.
 		while (!cin)
 		{
@@ -59,6 +51,14 @@ int main()
 			cout << "\033[0mHow much would you like to bet? $\033[32m";
 			cin.clear();
 			cin.ignore(256, '\n');
+			cin >> betAmount;
+		}
+		//checks the balance and if it is less than your balance it repeats you don't have enough until you choose an amount that you do have.
+		while (betAmount > balance)
+		{
+			cout << "\033[31mERROR 1: you do not have enough money to bet $" << betAmount << "\033[0m" << endl;
+			cout << "Your current balance is: \033[32m" << balance << endl;
+			cout << "\033[0mHow much would you like to bet? $\033[32m";
 			cin >> betAmount;
 		}
 		//subtracting the betAmount from the balance as to "replicate" them taking the coins
@@ -208,7 +208,7 @@ int main()
 			{
 				//DO NOT DO THIS, THIS WILL CRASH YOU!
 				cout << "\033[31mERROR 3: Invalid input on hit/stand/double\033[0m\n";
-				system("start C:\\Users\\moon\\source\\repos\\school-work\\School-work\\MainCPP\\cmd.bat");
+				system("start .\\MainCPP\\cmd.bat");
 				goto leave;
 			}
 		} while (EndOfGame != "True" || choice != "exit" || choice != "Exit" || choice != "e" || choice != "Y" || choice != "Yes" || choice != "yes" || choice != "y");

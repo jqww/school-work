@@ -7,27 +7,105 @@
 #include <cstdlib>
 #include <ctime>
 #include <random>
-#include <windows.h>
-#include <shellapi.h>
-#include <gdiplus.h>
 using namespace std;
-
 
 
 int main()
 {
-	int number;
-	cout << "Number: ";
-	cin >> number;
-	bool isPrime = true;
-	for (int i = 2; i < number; i++)
-	{
 
-	}
-	if (isPrime)
-		cout <<number << " is Prime.";
 }
 /*
+
+void reverse(string& str, int k)
+{
+	static int i = 0;
+	if (k == str.length())
+		return;
+	reverse(str, k + 1);
+	if (i <= k)
+		swap(str[i++], str[k]);
+}
+int main()
+{
+	string strings;
+	cout << "Enter first string: ";
+	getline(cin, strings);
+	reverse(strings, 0);
+	cout << "Reverse of your string is: " << strings;
+	return 0;
+}
+
+
+int recursiveSum(int m, int n)
+{
+	if (m > n)
+	{
+		int nce = m;
+		m = n;
+		n = nce;
+	}
+	else if (m == n)
+		return m;
+	return m + recursiveSum(m + 1, n);
+}
+//Sum numbers between m-n
+int main()
+{
+	int m, n;
+	cout << "Enter smaller value: ";
+	cin >> m;
+	cout << "Enter larger value: ";
+	cin >> n;
+	cout << "Sum = \033[32m" << recursiveSum(m, n)<<"\033[94m";
+	system("pause>0");
+}
+
+
+int sum(int a, int b);
+double sum(double a, double b);
+float sum(float a, float b, float c);
+int main()
+{
+	cout << sum(4, 3) << endl;
+	cout << sum(4.4, 3.3) << endl;
+	cout << sum(4.4, 3.3, 2.2) << endl;
+	system("pause>0");
+}
+int sum(int a, int b)
+{
+	return a + b;
+}
+double sum(double a, double b)
+{
+	return a + b;
+}
+float sum(float a, float b, float c)
+{
+	return a + b + c;
+}
+
+
+bool isPrime(int number)
+{
+	for (int i = 2; i < number; i++)
+	{
+		if (number % i == 0)
+			return false;
+	}
+	return true;
+}
+int main()
+{
+	int number;
+	cout << "Number: \033[96m";
+	cin >> number;
+	bool isPrimey = isPrime(number);
+	if (isPrimey)
+		cout << "\033[32m" << number << " is Prime.\033[0m";
+	else
+		cout << "\033[31m" << number << " is not Prime.\033[0m";
+}
+
 
 int main()
 {
@@ -73,12 +151,11 @@ int  main()
 int main()
 {
 
-	char sName[999] = "";
+	char sName[99] = "";
 	cout << "Enter your name: ";
 	cin >> sName;
 	for (char i = 0; i < sizeof(sName); i++)
-		cout << *(sName + i) << " ";
-	system("pause>0");
+		cout << *(sName + i) << "\n";
 }
 
 
