@@ -12,7 +12,7 @@ int main(void)
     do
     {
         int choice = 0;
-        cout << "What calculation would you like to do?\n   [1] Calculate Radians and Revolutions from degrees\n   [2] Convert Horsepower to Wattage and Foot Pounds\n   [3] Convert Wattage to Horsepower and Foot Pounds\n   [4] Convert Foot Pounds to Horsepower and Wattage\n   [5] Convert Radians to Revolutions\n   [6] Convert Revolutions to Radians\n(BTW use the numbers at the front of what you want so that it works properly)" << std::endl;
+        cout << "What calculation would you like to do?\n   [1] Calculate Radians and Revolutions from degrees\n   [2] Convert Horsepower to Wattage and Foot Pounds\n   [3] Convert Wattage to Horsepower and Foot Pounds\n   [4] Convert Foot Pounds to Horsepower and Wattage\n   [5] Convert Radians to Revolutions\n   [6] Convert Revolutions to Radians\n   [7] Convert Radians to Degrees\n(BTW use the numbers at the front of what you want so that it works properly)" << std::endl;
         cin >> choice;
         switch (choice)
         {
@@ -76,6 +76,15 @@ int main(void)
                 float RadianS = RevolutionS * (2*pi);
                 float DegreeS = RadianS * (180 / pi);
                 cout << "results: Radians:" << RadianS << " Degrees:" << DegreeS << endl;
+                break;
+            }
+            case 7:
+            {
+                float rAdians;
+                cout << "Enter the number of radians you would like to convert: ";
+                cin >> rAdians;
+                float dEgrees = rAdians * (180 / pi);
+                cout << "results: Degees:" << dEgrees << endl;
                 break;
             }
             default:
