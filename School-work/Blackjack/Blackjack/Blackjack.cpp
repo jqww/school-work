@@ -17,7 +17,7 @@ int main()
 	double balance = 50.0;
 	double betAmount;
 	string retry;
-	cout << "\033[036mWelcome to blackjack, by \033[35mMoontiz (william fox)\033[0m" << endl;
+	cout << "\033[036mWelcome to blackjack, by \033[35mMoontiz\033[0m" << endl;
 	do
 	{
 		//sets the timer for the random generator timings to 0 milliseconds.
